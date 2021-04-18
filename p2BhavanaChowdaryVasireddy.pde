@@ -75,6 +75,7 @@ PImage security;
 PImage tire;
 PImage traction;
 PImage tractionMal;
+PImage fog;
 PFont f;
 
 void setup(){
@@ -220,6 +221,7 @@ void setup(){
    tire = loadImage("tire.jpg");
    traction = loadImage("traction.jpg");
    tractionMal = loadImage("tractionMal.jpg");
+   fog=loadImage("fog.jpg");
             
   engineTemp = (cp5.addKnob("engineTemp")
                     .setRange(60, 120)
@@ -356,6 +358,10 @@ void setup(){
 
 void draw() {  
 
+  
+  //fill(255);
+  //stroke(255);
+  
   fill(0);
   stroke(255);
   //around speedometer
@@ -375,6 +381,9 @@ void draw() {
   text(":",860,90);
   text(minute(),870,90);
   text("Temp: 55°F", 830, 110);
+   image(doors, 425, 20);
+  image(seatbelt, 495, 20);
+  //image(fog,150,100);
   image(fuelpump, 870, 460);
   image(engTemp, 790, 460);
   float currentEngineTemp = engineTemp.getValue();
@@ -629,7 +638,7 @@ void controlEvent(ControlEvent theEvent) {
       sigLightOn = false;
     }
     break;
-  case "Emer":
+  case "Emergency":
     lasttimecheck = millis();
     sigLightOn = true;
     if (emergency.getState() == true) {
